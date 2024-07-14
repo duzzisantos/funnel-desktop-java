@@ -8,6 +8,8 @@ package crmapplicationdesktop;
 import java.util.*;
 import crmapplicationdesktop.entity.*;
 import javax.persistence.*;
+import LegalRules.PriceRules;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -189,6 +191,14 @@ public class AddProduct extends javax.swing.JFrame {
     private void HandleSubmit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleSubmit
         // TODO add your handling code here:
         
+        try{
+            
+        //check where these products originate from and apply special rules pertaining to pricing
+        
+        String [] selectedCountries = {"Colombia", "Cambodia", "Vietnam", "Bangladesh", "Uganda", "Ivory Coast", "Romania", "Ukraine", "Venezuela"};
+        PriceRules rules = new PriceRules();
+        rules.applyPriceRules(selectedCountries, productOrigin.getName());
+           
         Products product = new Products();
         
         product.setProductCategory(productCategory.getName());
@@ -198,14 +208,15 @@ public class AddProduct extends javax.swing.JFrame {
         product.setProductManager(productManager.getName());
         product.setProductOrigin(productOrigin.getName());
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRMApplicationDesktopPU");
-        EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
         em.persist(product);
         em.getTransaction().commit();
         em.close();
         emf.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_HandleSubmit
 
     /**

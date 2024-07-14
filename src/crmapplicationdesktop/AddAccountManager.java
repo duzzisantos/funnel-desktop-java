@@ -7,6 +7,8 @@ package crmapplicationdesktop;
 import Utilities.DateCleanser;
 import crmapplicationdesktop.entity.*;
 import javax.persistence.*;
+import ValidationRules.EmailValidationRules;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -157,7 +159,13 @@ public class AddAccountManager extends javax.swing.JFrame {
     private void HandleSubmit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleSubmit
         // TODO add your handling code here:
         
+       try {
         
+           //Test email for validity
+           EmailValidationRules evr = new EmailValidationRules();
+           evr.TestEmailAddress(email.getText());
+           
+           
         Accountmanagers acc = new Accountmanagers();
         acc.setFirstName(firstName.getText());
         acc.setLastName(lastName.getText());
@@ -182,6 +190,9 @@ public class AddAccountManager extends javax.swing.JFrame {
         em.getTransaction().commit();
         em.close();
         emf.close();
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(this, e.getMessage());
+       }
     }//GEN-LAST:event_HandleSubmit
 
     /**

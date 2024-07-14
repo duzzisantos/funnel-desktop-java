@@ -9,6 +9,9 @@ package crmapplicationdesktop;
 import Utilities.DateCleanser;
 import crmapplicationdesktop.entity.*;
 import javax.persistence.*;
+import ValidationRules.*;
+import LegalRules.StateRules;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Duzie Uche-Abba
@@ -280,8 +283,25 @@ public class AddCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_phoneActionPerformed
 
     private void HandleSubmit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleSubmit
-        // TODO add your handling code here:
         
+        
+        try{
+           
+            //Apply rules that validate email, zip code, and selected cities or states where shipping is not covered due to logistics reasons
+         EmailValidationRules emailRules = new EmailValidationRules();
+         emailRules.TestEmailAddress(email.getText());
+         
+         ZipCodeValidationRules zip = new ZipCodeValidationRules();
+         zip.TestZipCode(Integer.parseInt(zipCode.getText()));
+         
+         
+         String [] selectedCities = {"Key West", "Okechobee", "Shreveport", "Billings", "Albuquerque", "Niagara Falls", "Cheyenne"};
+         StateRules sr = new StateRules();
+         sr.applyCityShippingRules(selectedCities, city.getText());
+         sr.applyStateShippingRules(usState.getName());
+         
+         
+            
         Customers customer = new Customers();
         customer.setFirstName(firstName.getText());
         customer.setLastName(lastName.getText());
@@ -304,6 +324,10 @@ public class AddCustomer extends javax.swing.JFrame {
         em.getTransaction().commit();
         em.close();
         emf.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+        }
     }//GEN-LAST:event_HandleSubmit
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed

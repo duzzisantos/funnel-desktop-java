@@ -4,8 +4,11 @@
  */
 package TableComponents;
 import crmapplicationdesktop.entity.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.persistence.*;
 import java.util.*;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,15 +35,28 @@ public class EnrollmentTable extends javax.swing.JFrame {
          //This method triggers when managers table is selected for display in order to map manager information to table
     private void generateTableRows(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+           EditPanel.setLayout(new GridLayout(0, 1, 0, 2)); // Vertical layout with 5px gap
+           DeletePanel.setLayout(new GridLayout(0, 1, 0, 2));
+           
         for(Campaignenrollments mgr: CAMPAIGNS){
             model.addRow( new Object[] {
                 mgr.getCampaignId(), mgr.getCampaignName(), mgr.getAccountManagerId(), mgr.getCampaignManager(),
                 mgr.getProductId(), mgr.getCustomerId(), mgr.getCampaignContent(), mgr.getHasResponded(),
-                "Edit",
-                "Delete",
-                "Contact"
+                
             });
+            
+            JButton editButton = new JButton("Edit");
+           JButton deleteButton = new JButton("Delete");
+            editButton.setPreferredSize(new Dimension(75, 25));
+            deleteButton.setPreferredSize(new Dimension(75, 25));
+            
+            EditPanel.add(editButton);
+            DeletePanel.add(deleteButton);
         }
+         EditPanel.revalidate();
+        EditPanel.repaint();
+        DeletePanel.revalidate();
+        DeletePanel.repaint();
     }
 
     /**
@@ -55,6 +71,10 @@ public class EnrollmentTable extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        EditPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        DeletePanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,28 +83,59 @@ public class EnrollmentTable extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Campaign ID", "Campaign Name", "Manager ID", "Manager Name", "Product ID", "Customer ID", "Campaign Content", "Has Responded", "Edit", "Delete", "Contact"
+                "Campaign ID", "Campaign Name", "Manager ID", "Manager Name", "Product ID", "Customer ID", "Campaign Content", "Has Responded"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, true, false, false, false
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Campaign Enrollment List");
+
+        jLabel2.setText("Edit");
+
+        javax.swing.GroupLayout EditPanelLayout = new javax.swing.GroupLayout(EditPanel);
+        EditPanel.setLayout(EditPanelLayout);
+        EditPanelLayout.setHorizontalGroup(
+            EditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        EditPanelLayout.setVerticalGroup(
+            EditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel3.setText("Delete");
+
+        javax.swing.GroupLayout DeletePanelLayout = new javax.swing.GroupLayout(DeletePanel);
+        DeletePanel.setLayout(DeletePanelLayout);
+        DeletePanelLayout.setHorizontalGroup(
+            DeletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeletePanelLayout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+        DeletePanelLayout.setVerticalGroup(
+            DeletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeletePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,9 +144,16 @@ public class EnrollmentTable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1324, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeletePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +161,11 @@ public class EnrollmentTable extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(DeletePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(EditPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -146,7 +208,11 @@ public class EnrollmentTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DeletePanel;
+    private javax.swing.JPanel EditPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

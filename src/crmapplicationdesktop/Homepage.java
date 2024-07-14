@@ -41,12 +41,10 @@ public class Homepage extends javax.swing.JFrame {
         campaignsPanelLabel = new javax.swing.JLabel();
         enrollmentPane = new javax.swing.JPanel();
         enrollmentPanelLabel = new javax.swing.JLabel();
-        segmentationPane = new javax.swing.JPanel();
-        segmentationPanelLabel = new javax.swing.JLabel();
         infoMGTPane = new javax.swing.JPanel();
-        infoMGTPanelLabel = new javax.swing.JLabel();
-        marketingFunnelPane = new javax.swing.JPanel();
         marketingfunnelLabel = new javax.swing.JLabel();
+        marketingFunnelPane = new javax.swing.JPanel();
+        infoMGTPanelLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 0, 204));
@@ -216,33 +214,10 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        segmentationPanelLabel.setText("Market Segmentation");
-        segmentationPanelLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        marketingfunnelLabel.setText("Marketing Funnel");
+        marketingfunnelLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HandleShowSegmentation(evt);
-            }
-        });
-
-        javax.swing.GroupLayout segmentationPaneLayout = new javax.swing.GroupLayout(segmentationPane);
-        segmentationPane.setLayout(segmentationPaneLayout);
-        segmentationPaneLayout.setHorizontalGroup(
-            segmentationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(segmentationPaneLayout.createSequentialGroup()
-                .addComponent(segmentationPanelLabel)
-                .addGap(0, 12, Short.MAX_VALUE))
-        );
-        segmentationPaneLayout.setVerticalGroup(
-            segmentationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(segmentationPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(segmentationPanelLabel)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        infoMGTPanelLabel.setText("Information Management");
-        infoMGTPanelLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HandleShowInfoMgt(evt);
+                HandleShowFunnel(evt);
             }
         });
 
@@ -251,41 +226,35 @@ public class Homepage extends javax.swing.JFrame {
         infoMGTPaneLayout.setHorizontalGroup(
             infoMGTPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoMGTPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(infoMGTPanelLabel)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(marketingfunnelLabel)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         infoMGTPaneLayout.setVerticalGroup(
             infoMGTPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoMGTPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(infoMGTPanelLabel)
+                .addComponent(marketingfunnelLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        marketingfunnelLabel.setText("Marketing Funnel");
-        marketingfunnelLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HandleShowFunnel(evt);
-            }
-        });
 
         javax.swing.GroupLayout marketingFunnelPaneLayout = new javax.swing.GroupLayout(marketingFunnelPane);
         marketingFunnelPane.setLayout(marketingFunnelPaneLayout);
         marketingFunnelPaneLayout.setHorizontalGroup(
             marketingFunnelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(marketingFunnelPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(marketingfunnelLabel)
-                .addContainerGap(42, Short.MAX_VALUE))
+            .addGap(0, 146, Short.MAX_VALUE)
         );
         marketingFunnelPaneLayout.setVerticalGroup(
             marketingFunnelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(marketingFunnelPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(marketingfunnelLabel)
-                .addContainerGap(12, Short.MAX_VALUE))
+            .addGap(0, 33, Short.MAX_VALUE)
         );
+
+        infoMGTPanelLabel.setText("Information Management");
+        infoMGTPanelLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HandleShowInfoMgt(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -305,8 +274,8 @@ public class Homepage extends javax.swing.JFrame {
                 .addComponent(campaignsPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(enrollmentPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(segmentationPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(infoMGTPanelLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(infoMGTPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -318,7 +287,6 @@ public class Homepage extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(segmentationPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enrollmentPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(campaignsPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(productPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -326,9 +294,12 @@ public class Homepage extends javax.swing.JFrame {
                         .addComponent(accountManagerPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(HomepagePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(infoMGTPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(marketingFunnelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(marketingFunnelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(infoMGTPanelLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopBody, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE))
+                .addComponent(desktopBody, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE))
         );
 
         pack();
@@ -377,11 +348,6 @@ public class Homepage extends javax.swing.JFrame {
         InformationManagement mgt = new InformationManagement();
         mgt.show();
     }//GEN-LAST:event_HandleShowInfoMgt
-
-    private void HandleShowSegmentation(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HandleShowSegmentation
-        MarketSegmentation segment = new MarketSegmentation();
-        segment.show();
-    }//GEN-LAST:event_HandleShowSegmentation
 
     
     /**
@@ -438,7 +404,5 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel marketingfunnelLabel;
     private javax.swing.JPanel productPane;
     private javax.swing.JLabel productPanelLabel;
-    private javax.swing.JPanel segmentationPane;
-    private javax.swing.JLabel segmentationPanelLabel;
     // End of variables declaration//GEN-END:variables
 }
