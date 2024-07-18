@@ -143,6 +143,7 @@ public class AddCampaign extends javax.swing.JFrame {
         resetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetBtnActionPerformed(evt);
+                HandleResetform(evt);
             }
         });
 
@@ -275,9 +276,9 @@ public class AddCampaign extends javax.swing.JFrame {
         
         Campaigns camp = new Campaigns();
         camp.setCampaignName(campaignName.getText());
-        camp.setAccountManagerId(campaignManagerID.getSelectedIndex());
+        camp.setAccountManagerId(Integer.parseInt(campaignManagerID.getSelectedItem().toString()));
         camp.setCampaignProduct(campaignProduct.getName());
-        camp.setCampaignProduct(campaignProductID.getName());
+        camp.setProductId(Integer.parseInt(campaignProductID.getSelectedItem().toString()));
         camp.setCampaignManager(campaignManager.getName());
         camp.setCampaignType(campaignType.getName());
         camp.setCampaignSalesValueTarget(Integer.parseInt(salesValue.getText()));
@@ -301,6 +302,19 @@ public class AddCampaign extends javax.swing.JFrame {
         emf.close();
         
     }//GEN-LAST:event_HandleSubmit
+
+    private void HandleResetform(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleResetform
+        campaignName.setText("");
+        campaignManagerID.setSelectedItem("Please select"); campaignProduct.setSelectedItem("Please select"); 
+        campaignProduct.setSelectedItem("Please select");
+        campaignProductID.setSelectedItem("Please select");
+        campaignManager.setSelectedItem(("Please select"));
+        campaignType.setSelectedItem(("Please select"));
+        salesValue.setText("");
+        salesVolume.setText("");
+        campaignStart.setText(""); 
+        campaignEnd.setText("");
+    }//GEN-LAST:event_HandleResetform
 
     /**
      * @param args the command line arguments

@@ -29,7 +29,7 @@ public class AddProduct extends javax.swing.JFrame {
 
     //List of mappable strings or numbers
     private static final String[] COUNTRIES = {"Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe", "Palestine"};
-    private static final String[] PRODUCT_CATEGORIES = {"Camera", "Printer", "Monitor", "Mice", "Speakers", "Keyboards", "Hard Drives", "Tablets", "Mobile Phones", "Wifi Routers"};
+    private static final String[] PRODUCT_CATEGORIES = {"Camera", "Printer", "Monitor", "Mice", "Speakers", "Keyboards", "Hard Drives", "Tablets", "Mobile Phones", "Wifi Routers", "Casual Apparels"};
     
     //We call upon the Accountmanager dataset to suppply us with unique account manager IDS which shall be rendered upon the specified combo box element
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRMApplicationDesktopPU");
@@ -47,7 +47,7 @@ public class AddProduct extends javax.swing.JFrame {
         for(String country: COUNTRIES){
             productOrigin.addItem(country);
         }
-        productOrigin.setEditable(true);
+        productOrigin.setEditable(false);
     }
     
      private void populateProductCategory(){
@@ -55,14 +55,14 @@ public class AddProduct extends javax.swing.JFrame {
              productCategory.addItem(category);
          }
          
-         productCategory.setEditable(true);
+         productCategory.setEditable(false);
      }
      
      private void populateManagers(){
          for(Accountmanagers person: MANAGERS){
              productManager.addItem(person.getAccountManagerId().toString());
          }
-         productCategory.setEditable(true);
+         productCategory.setEditable(false);
      }
      
      
@@ -115,6 +115,11 @@ public class AddProduct extends javax.swing.JFrame {
         productCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select" }));
 
         resetBtn.setText("Reset");
+        resetBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HandleResetform(evt);
+            }
+        });
 
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -195,18 +200,19 @@ public class AddProduct extends javax.swing.JFrame {
             
         //check where these products originate from and apply special rules pertaining to pricing
         
-        String [] selectedCountries = {"Colombia", "Cambodia", "Vietnam", "Bangladesh", "Uganda", "Ivory Coast", "Romania", "Ukraine", "Venezuela"};
+        String [] selectedCountries = {"Colombia", "Cambodia", "Vietnam", "Bangladesh", "Uganda", "Cote d'Ivoire", "Romania", "Ukraine", "Venezuela"};
+        String [] selectedProducts = {"Baseball Hat", "Hiking Shoes", "Tennis Shoes", "Hip Flask", "Spring Jacket"};
         PriceRules rules = new PriceRules();
-        rules.applyPriceRules(selectedCountries, productOrigin.getName());
+        rules.applyPriceRules(selectedCountries, selectedProducts, productOrigin.getSelectedItem().toString(), price.getText());
            
         Products product = new Products();
         
-        product.setProductCategory(productCategory.getName());
+        product.setProductCategory(productCategory.getSelectedItem().toString());
         product.setProductName(productName.getText());
         product.setProductManufacturer(manufacturer.getText());
         product.setProductPrice(Integer.parseInt(price.getText()));
-        product.setProductManager(productManager.getName());
-        product.setProductOrigin(productOrigin.getName());
+        product.setProductManager(productManager.getSelectedItem().toString());
+        product.setProductOrigin(productOrigin.getSelectedItem().toString());
         
         
         em.getTransaction().begin();
@@ -215,9 +221,19 @@ public class AddProduct extends javax.swing.JFrame {
         em.close();
         emf.close();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showConfirmDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_HandleSubmit
+
+    private void HandleResetform(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleResetform
+       
+        productCategory.setSelectedItem("Please select");
+        productName.setText("");
+        manufacturer.setText("");
+        price.setText("");
+        productManager.setSelectedItem("Please select");
+        productOrigin.setSelectedItem("Please select");
+    }//GEN-LAST:event_HandleResetform
 
     /**
      * @param args the command line arguments

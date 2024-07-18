@@ -10,7 +10,7 @@ import Utilities.DateCleanser;
 import crmapplicationdesktop.entity.*;
 import javax.persistence.*;
 import ValidationRules.*;
-import LegalRules.StateRules;
+import LegalRules.*;
 import javax.swing.JOptionPane;
 /**
  *
@@ -296,11 +296,13 @@ public class AddCustomer extends javax.swing.JFrame {
          
          
          String [] selectedCities = {"Key West", "Okechobee", "Shreveport", "Billings", "Albuquerque", "Niagara Falls", "Cheyenne"};
+         String [] selectedStates = {"Nevada", "Alaska", "Puerto Rico", "Utah", "Oregon"};
          StateRules sr = new StateRules();
-         sr.applyCityShippingRules(selectedCities, city.getText());
-         sr.applyStateShippingRules(usState.getName());
+         CityRules cr = new CityRules();
+         cr.applyCityShippingRules(selectedCities, city.getText());
+         sr.applyStateShippingRules(selectedStates, usState.getSelectedItem().toString());
          
-         
+       
             
         Customers customer = new Customers();
         customer.setFirstName(firstName.getText());
@@ -308,7 +310,7 @@ public class AddCustomer extends javax.swing.JFrame {
         customer.setEmail(email.getText());
         customer.setPostalAddress(postalAddress.getText());
         customer.setCity(city.getText());
-        customer.setUsState(usState.getName());
+        customer.setUsState(usState.getSelectedItem().toString());
         customer.setZipCode(Integer.parseInt(zipCode.getText()));
         customer.setPhoneNumber(phone.getText());
         
@@ -324,14 +326,30 @@ public class AddCustomer extends javax.swing.JFrame {
         em.getTransaction().commit();
         em.close();
         emf.close();
+        
+        
+        
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage());
+            System.out.println(e.getMessage());
+            System.out.println(usState.getSelectedItem().toString());
             
+            if(usState.getSelectedItem().toString().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Due to logistics reasons, we do not ship to this US state.");
+            }
         }
     }//GEN-LAST:event_HandleSubmit
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
-        // TODO add your handling code here:
+           firstName.setText("");
+           lastName.setText("");
+           email.setText("");
+           postalAddress.setText("");
+           city.setText("");
+           usState.setSelectedItem("Please select");
+           zipCode.setText("");
+           phone.setText("");
+           dob.setText("");
     }//GEN-LAST:event_resetBtnActionPerformed
 
     /**

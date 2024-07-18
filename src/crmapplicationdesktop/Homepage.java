@@ -29,6 +29,22 @@ public class Homepage extends javax.swing.JFrame {
 
         desktopBody = new javax.swing.JPanel();
         infoMGTPane1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        acctManagerMenu = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         HomepagePanel = new javax.swing.JPanel();
         homepageLabel = new javax.swing.JLabel();
         accountManagerPane = new javax.swing.JPanel();
@@ -43,13 +59,13 @@ public class Homepage extends javax.swing.JFrame {
         enrollmentPanelLabel = new javax.swing.JLabel();
         infoMGTPane = new javax.swing.JPanel();
         marketingfunnelLabel = new javax.swing.JLabel();
-        marketingFunnelPane = new javax.swing.JPanel();
         infoMGTPanelLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(51, 0, 204));
+        setBackground(new java.awt.Color(0, 51, 255));
 
-        desktopBody.setLayout(new java.awt.BorderLayout());
+        desktopBody.setBackground(new java.awt.Color(255, 255, 255));
+        desktopBody.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout infoMGTPane1Layout = new javax.swing.GroupLayout(infoMGTPane1);
         infoMGTPane1.setLayout(infoMGTPane1Layout);
@@ -59,10 +75,244 @@ public class Homepage extends javax.swing.JFrame {
         );
         infoMGTPane1Layout.setVerticalGroup(
             infoMGTPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 17, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        desktopBody.add(infoMGTPane1, java.awt.BorderLayout.PAGE_START);
+        desktopBody.add(infoMGTPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 0));
+
+        acctManagerMenu.setBackground(new java.awt.Color(250, 250, 250));
+        acctManagerMenu.setForeground(new java.awt.Color(255, 255, 255));
+        acctManagerMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoManagers(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel1.setText("Add Account Managers");
+
+        javax.swing.GroupLayout acctManagerMenuLayout = new javax.swing.GroupLayout(acctManagerMenu);
+        acctManagerMenu.setLayout(acctManagerMenuLayout);
+        acctManagerMenuLayout.setHorizontalGroup(
+            acctManagerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(acctManagerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acctManagerMenuLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        acctManagerMenuLayout.setVerticalGroup(
+            acctManagerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(acctManagerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acctManagerMenuLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(acctManagerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(acctManagerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        desktopBody.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 270, 120));
+
+        jPanel3.setBackground(new java.awt.Color(250, 250, 250));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoCustomer(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel2.setText("Add Customers");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jLabel2)
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel2)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        desktopBody.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
+
+        jPanel4.setBackground(new java.awt.Color(250, 250, 250));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoProducts(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel3.setText("Add Products");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jLabel3)
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel3)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        desktopBody.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, -1, -1));
+
+        jPanel5.setBackground(new java.awt.Color(250, 250, 250));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoCampaign(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel4.setText("Add Campaigns");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jLabel4)
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel4)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        desktopBody.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 120, -1, -1));
+
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoEnrollments(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel5.setText("Campaign Enrollment");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel5)
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel5)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+
+        desktopBody.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 270, -1));
+
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoInfoMgt(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel6.setText("Information Management");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel6)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel6)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+
+        desktopBody.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 270, -1));
+
+        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoFunnel(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel7.setText("Marketing Funnel");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        desktopBody.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, 260, -1));
+
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel8.setText("Good Day, Admin");
+        desktopBody.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         HomepagePanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -70,7 +320,8 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
 
-        homepageLabel.setText("Home Page");
+        homepageLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        homepageLabel.setText("Funnel");
 
         javax.swing.GroupLayout HomepagePanelLayout = new javax.swing.GroupLayout(HomepagePanel);
         HomepagePanel.setLayout(HomepagePanelLayout);
@@ -238,17 +489,6 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout marketingFunnelPaneLayout = new javax.swing.GroupLayout(marketingFunnelPane);
-        marketingFunnelPane.setLayout(marketingFunnelPaneLayout);
-        marketingFunnelPaneLayout.setHorizontalGroup(
-            marketingFunnelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 146, Short.MAX_VALUE)
-        );
-        marketingFunnelPaneLayout.setVerticalGroup(
-            marketingFunnelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 33, Short.MAX_VALUE)
-        );
-
         infoMGTPanelLabel.setText("Information Management");
         infoMGTPanelLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -278,8 +518,6 @@ public class Homepage extends javax.swing.JFrame {
                 .addComponent(infoMGTPanelLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(infoMGTPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(marketingFunnelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -294,12 +532,11 @@ public class Homepage extends javax.swing.JFrame {
                         .addComponent(accountManagerPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(HomepagePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(infoMGTPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(marketingFunnelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(infoMGTPanelLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopBody, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE))
+                        .addComponent(infoMGTPanelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(desktopBody, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE))
         );
 
         pack();
@@ -349,6 +586,48 @@ public class Homepage extends javax.swing.JFrame {
         mgt.show();
     }//GEN-LAST:event_HandleShowInfoMgt
 
+    private void gotoManagers(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoManagers
+        AddAccountManager  acct = new AddAccountManager();
+        acct.show();
+    }//GEN-LAST:event_gotoManagers
+
+    private void gotoCustomer(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoCustomer
+        // TODO add your handling code here:
+        AddCustomer cust = new AddCustomer();
+        cust.show();
+    }//GEN-LAST:event_gotoCustomer
+
+    private void gotoProducts(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoProducts
+        // TODO add your handling code here:
+         AddProduct prod = new AddProduct();
+       prod.show();
+    }//GEN-LAST:event_gotoProducts
+
+    private void gotoCampaign(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoCampaign
+        // TODO add your handling code here:
+        AddCampaign camp = new AddCampaign();
+        camp.show();
+    }//GEN-LAST:event_gotoCampaign
+
+    private void gotoEnrollments(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoEnrollments
+        // TODO add your handling code here:
+          
+        CampaignEnrollment enroll = new CampaignEnrollment();
+        enroll.show();
+    }//GEN-LAST:event_gotoEnrollments
+
+    private void gotoInfoMgt(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoInfoMgt
+        // TODO add your handling code here:
+        InformationManagement mgt = new InformationManagement();
+        mgt.show();
+    }//GEN-LAST:event_gotoInfoMgt
+
+    private void gotoFunnel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoFunnel
+        // TODO add your handling code here:
+         MarketingFunnel funnel = new MarketingFunnel();
+      funnel.show();
+    }//GEN-LAST:event_gotoFunnel
+
     
     /**
      * @param args the command line arguments
@@ -388,6 +667,7 @@ public class Homepage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HomepagePanel;
     private javax.swing.JPanel accountManagerPane;
+    private javax.swing.JPanel acctManagerMenu;
     private javax.swing.JLabel acctmgrLabel;
     private javax.swing.JPanel campaignsPane;
     private javax.swing.JLabel campaignsPanelLabel;
@@ -400,7 +680,21 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JPanel infoMGTPane;
     private javax.swing.JPanel infoMGTPane1;
     private javax.swing.JLabel infoMGTPanelLabel;
-    private javax.swing.JPanel marketingFunnelPane;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel marketingfunnelLabel;
     private javax.swing.JPanel productPane;
     private javax.swing.JLabel productPanelLabel;

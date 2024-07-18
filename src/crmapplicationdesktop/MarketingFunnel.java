@@ -4,6 +4,14 @@
  */
 package crmapplicationdesktop;
 
+import crmapplicationdesktop.entity.*;
+import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+
 /**
  *
  * @author user
@@ -15,7 +23,82 @@ public class MarketingFunnel extends javax.swing.JFrame {
      */
     public MarketingFunnel() {
         initComponents();
+        populateCampaigns();
+        mapValuesOnFunnel();
     }
+    
+    
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRMApplicationDesktopPU");
+        EntityManager em = emf.createEntityManager();
+        
+    //create a query to retrieve all account managers
+        TypedQuery<Campaignenrollments> query = em.createQuery("SELECT c FROM Campaignenrollments c", Campaignenrollments.class);
+        List<Campaignenrollments> CAMPAIGNENROLLMENTS = query.getResultList();
+        
+        
+        //Feed UI with data from campaigns - so that in future, we can dynamically show makreting funnel for each campaign
+        private void populateCampaigns(){
+            for(Campaignenrollments cam: CAMPAIGNENROLLMENTS){
+                chooseCampaign.addItem(cam.getCampaignName());
+            }
+            chooseCampaign.setEditable(false);
+        }
+        
+        
+        //Set Values to funnel visualization to show percentages for prospects & leads - We could use this as a global functionality as the app expands
+private void mapValuesOnFunnel() {
+    if (CAMPAIGNENROLLMENTS == null) {
+        System.err.println("CAMPAIGNENROLLMENTS is null");
+        updateUIWithDefaultValues();
+        return;
+    }
+
+    if (CAMPAIGNENROLLMENTS.isEmpty()) {
+        System.err.println("CAMPAIGNENROLLMENTS is empty");
+        updateUIWithDefaultValues();
+        return;
+    }
+
+    long falseCount = CAMPAIGNENROLLMENTS.stream()
+            .filter(Objects::nonNull)
+            .map(cam -> {
+                try {
+                    return cam.getHasResponded();
+                } catch (NullPointerException e) {
+                    System.err.println("NullPointerException in getHasResponded for campaign: " + cam);
+                    return null;
+                }
+            })
+            .filter(Objects::nonNull)
+            .filter(hasResponded -> !hasResponded)
+            .count();
+    
+    int totalResponses = CAMPAIGNENROLLMENTS.size();
+    long trueCount = totalResponses - falseCount;
+    
+    int percentageProspects = totalResponses > 0 ? (int) ((falseCount * 100.0) / totalResponses) : 0;
+    int percentageLeads = totalResponses > 0 ? (int) ((trueCount * 100.0) / totalResponses) : 0;
+    
+    updateUIWithValues(percentageProspects, percentageLeads);
+}
+
+private void updateUIWithDefaultValues() {
+    updateUIWithValues(0, 0);
+}
+
+private void updateUIWithValues(int percentageProspects, int percentageLeads) {
+    if (prospectValue != null) {
+        prospectValue.setText(percentageProspects + "%");
+    } else {
+        System.err.println("prospectValue is null");
+    }
+    
+    if (leadsValue != null) {
+        leadsValue.setText(percentageLeads + "%");
+    } else {
+        System.err.println("leadsValue is null");
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,7 +112,7 @@ public class MarketingFunnel extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         prospects = new javax.swing.JTextField();
         leads = new javax.swing.JTextField();
-        leads1 = new javax.swing.JTextField();
+        conversions = new javax.swing.JTextField();
         prospectValue = new javax.swing.JTextField();
         leadsValue = new javax.swing.JTextField();
         conversionsValue = new javax.swing.JTextField();
@@ -37,9 +120,11 @@ public class MarketingFunnel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Marketing Funnel");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 243, 30));
 
         prospects.setEditable(false);
         prospects.setBackground(new java.awt.Color(0, 102, 153));
@@ -48,6 +133,7 @@ public class MarketingFunnel extends javax.swing.JFrame {
         prospects.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         prospects.setText("Prospects");
         prospects.setToolTipText("All Propspects enrolled in campaigns");
+        getContentPane().add(prospects, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 185, 634, 77));
 
         leads.setEditable(false);
         leads.setBackground(new java.awt.Color(0, 153, 153));
@@ -56,96 +142,41 @@ public class MarketingFunnel extends javax.swing.JFrame {
         leads.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         leads.setText("Leads");
         leads.setToolTipText("All leads signed up to campaigns");
+        getContentPane().add(leads, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 274, 434, 77));
 
-        leads1.setEditable(false);
-        leads1.setBackground(new java.awt.Color(51, 255, 204));
-        leads1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        leads1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        leads1.setText("Conversions");
-        leads1.setToolTipText("All conversions acheived from campaigns");
+        conversions.setEditable(false);
+        conversions.setBackground(new java.awt.Color(51, 255, 204));
+        conversions.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        conversions.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        conversions.setText("Conversions");
+        conversions.setToolTipText("All conversions acheived from campaigns");
+        getContentPane().add(conversions, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 357, 282, 77));
 
         prospectValue.setEditable(false);
+        prospectValue.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        prospectValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(prospectValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 189, 95, 34));
 
         leadsValue.setEditable(false);
+        leadsValue.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        leadsValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         leadsValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leadsValueActionPerformed(evt);
             }
         });
+        getContentPane().add(leadsValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 274, 95, 34));
 
         conversionsValue.setEditable(false);
+        conversionsValue.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        conversionsValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(conversionsValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 355, 95, 34));
 
-        chooseCampaign.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select" }));
+        chooseCampaign.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Viewing Overall" }));
+        getContentPane().add(chooseCampaign, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 135, 195, -1));
 
         jLabel2.setText("Select Campaign");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(prospects, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(35, 35, 35))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(leads1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(218, 218, 218))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(270, 270, 270)
-                                        .addComponent(leads, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(176, 176, 176)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(chooseCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(141, 141, 141)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(conversionsValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(leadsValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prospectValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(599, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(prospectValue, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chooseCampaign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(prospects, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(leadsValue, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(conversionsValue, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(leads, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(leads1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(349, 349, 349))))
-        );
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 112, 148, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -191,11 +222,11 @@ public class MarketingFunnel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> chooseCampaign;
+    private javax.swing.JTextField conversions;
     private javax.swing.JTextField conversionsValue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField leads;
-    private javax.swing.JTextField leads1;
     private javax.swing.JTextField leadsValue;
     private javax.swing.JTextField prospectValue;
     private javax.swing.JTextField prospects;

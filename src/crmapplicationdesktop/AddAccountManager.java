@@ -77,6 +77,11 @@ public class AddAccountManager extends javax.swing.JFrame {
         });
 
         jButton2.setText("Reset");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HandleResetform(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,6 +199,17 @@ public class AddAccountManager extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, e.getMessage());
        }
     }//GEN-LAST:event_HandleSubmit
+
+    private void HandleResetform(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleResetform
+       firstName.setText("");
+       lastName.setText("");
+       specialization.setText("");
+       gradeLevel.setText("");
+       email.setText("");
+       phone.setText("");
+       doe.setText("");
+        
+    }//GEN-LAST:event_HandleResetform
 
     /**
      * @param args the command line arguments

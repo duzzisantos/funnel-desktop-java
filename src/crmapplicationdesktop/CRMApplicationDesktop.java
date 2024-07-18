@@ -7,7 +7,8 @@ package crmapplicationdesktop;
 
 /**
  *
- * @author user
+ * @author Duzie Uche-Abba
+ * description: this is the application UI top level
  */
 public class CRMApplicationDesktop {
 
@@ -17,7 +18,8 @@ public class CRMApplicationDesktop {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        
+        Homepage funnelCRM = new Homepage();
+        funnelCRM.show();
        
     }
     

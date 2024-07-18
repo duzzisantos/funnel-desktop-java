@@ -99,8 +99,6 @@ public class CampaignEnrollment extends javax.swing.JFrame {
         respondedLabel = new javax.swing.JLabel();
         acctMgrLabel = new javax.swing.JLabel();
         campaignContentLabel = new javax.swing.JLabel();
-        respondedYes = new javax.swing.JCheckBox();
-        respondedNo = new javax.swing.JCheckBox();
         customerIDLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -113,6 +111,7 @@ public class CampaignEnrollment extends javax.swing.JFrame {
         accountManagerName = new javax.swing.JComboBox<>();
         customerID = new javax.swing.JComboBox<>();
         campaignProduct1 = new javax.swing.JComboBox<>();
+        hasResponded = new javax.swing.JComboBox<>();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -138,20 +137,6 @@ public class CampaignEnrollment extends javax.swing.JFrame {
 
         campaignContentLabel.setText("Campaign Content");
 
-        respondedYes.setText("Yes");
-        respondedYes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                respondedYesActionPerformed(evt);
-            }
-        });
-
-        respondedNo.setText("No");
-        respondedNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                respondedNoActionPerformed(evt);
-            }
-        });
-
         customerIDLabel.setText("Customer ID");
 
         jTextArea1.setColumns(20);
@@ -166,6 +151,11 @@ public class CampaignEnrollment extends javax.swing.JFrame {
         });
 
         resetBtn.setText("Reset");
+        resetBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HandleResetform(evt);
+            }
+        });
 
         campaignProductLabel.setText("Campaign Product");
 
@@ -186,6 +176,13 @@ public class CampaignEnrollment extends javax.swing.JFrame {
 
         campaignProduct1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select" }));
 
+        hasResponded.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "TRUE", "FALSE" }));
+        hasResponded.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                HandleSelectHasResponded(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,18 +190,6 @@ public class CampaignEnrollment extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(submitBtn)
-                                .addGap(12, 12, 12)
-                                .addComponent(resetBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(respondedYes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(respondedNo))
-                            .addComponent(campaignProductLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
@@ -222,7 +207,16 @@ public class CampaignEnrollment extends javax.swing.JFrame {
                             .addComponent(accountManagerName, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campaignProduct1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(customerID, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(698, Short.MAX_VALUE))))
+                        .addContainerGap(698, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(submitBtn)
+                                .addGap(12, 12, 12)
+                                .addComponent(resetBtn))
+                            .addComponent(campaignProductLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hasResponded, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(621, Short.MAX_VALUE)
@@ -261,10 +255,8 @@ public class CampaignEnrollment extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(respondedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(respondedYes)
-                    .addComponent(respondedNo))
-                .addGap(18, 18, 18)
+                .addComponent(hasResponded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(campaignContentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,43 +275,51 @@ public class CampaignEnrollment extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void respondedYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respondedYesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_respondedYesActionPerformed
-
-    private void respondedNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respondedNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_respondedNoActionPerformed
-
     
     //This Handles the submission of the Campaign Enrollment form
     private void HandleSubmit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleSubmit
         
         Campaignenrollments enr = new Campaignenrollments();
         
-        enr.setCampaignId(Integer.parseInt(campaignID.getName()));
-        enr.setCampaignName(campaignName.getName());
-        enr.setAccountManagerId(Integer.parseInt(accountManagerID.getName()));
-        enr.setCampaignManager(accountManagerName.getName());
-        enr.setCustomerId(Integer.parseInt(customerID.getName()));
+        enr.setCampaignId(Integer.parseInt(campaignID.getSelectedItem().toString()));
+        enr.setCampaignName(campaignName.getSelectedItem().toString());
+        enr.setAccountManagerId(Integer.parseInt(accountManagerID.getSelectedItem().toString()));
+        enr.setCampaignManager(accountManagerName.getSelectedItem().toString());
+        enr.setCustomerId(Integer.parseInt(customerID.getSelectedItem().toString()));
         enr.setCampaignContent(jTextArea1.getText());
-        enr.setProductId(Integer.parseInt(campaignProduct1.getName()));
+        enr.setProductId(Integer.parseInt(campaignProduct1.getSelectedItem().toString()));
+        enr.setHasResponded(Boolean.getBoolean(hasResponded.getSelectedItem().toString()));
         
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRMApplicationDesktopPU");
-        EntityManager em = emf.createEntityManager();
+        EntityManagerFactory emfa = Persistence.createEntityManagerFactory("CRMApplicationDesktopPU");
+        EntityManager ema = emf.createEntityManager();
         
-        em.getTransaction().begin();
-        em.persist(enr);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        ema.getTransaction().begin();
+        ema.persist(enr);
+        ema.getTransaction().commit();
+        ema.close();
+        emfa.close();
         
     }//GEN-LAST:event_HandleSubmit
 
     private void campaignNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campaignNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campaignNameActionPerformed
+
+    private void HandleResetform(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandleResetform
+        
+        campaignID.setSelectedItem("Please select");
+        campaignName.setSelectedItem("Please select");
+        accountManagerID.setSelectedItem("Please select");
+        accountManagerName.setSelectedItem("Please select");
+        customerID.setSelectedItem("Please select");
+        jTextArea1.setText("");
+        campaignProduct1.setSelectedItem("Please select");
+    }//GEN-LAST:event_HandleResetform
+
+    private void HandleSelectHasResponded(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_HandleSelectHasResponded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HandleSelectHasResponded
 
     /**
      * @param args the command line arguments
@@ -371,6 +371,7 @@ public class CampaignEnrollment extends javax.swing.JFrame {
     private javax.swing.JLabel campaignProductLabel;
     private javax.swing.JComboBox<String> customerID;
     private javax.swing.JLabel customerIDLabel;
+    private javax.swing.JComboBox<String> hasResponded;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -379,8 +380,6 @@ public class CampaignEnrollment extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton resetBtn;
     private javax.swing.JLabel respondedLabel;
-    private javax.swing.JCheckBox respondedNo;
-    private javax.swing.JCheckBox respondedYes;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }
