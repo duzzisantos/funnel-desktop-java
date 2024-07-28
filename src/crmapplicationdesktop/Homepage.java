@@ -45,6 +45,8 @@ public class Homepage extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        stockQuotePanel = new javax.swing.JPanel();
+        stockQoutePanelLabel = new javax.swing.JLabel();
         HomepagePanel = new javax.swing.JPanel();
         homepageLabel = new javax.swing.JLabel();
         accountManagerPane = new javax.swing.JPanel();
@@ -60,12 +62,13 @@ public class Homepage extends javax.swing.JFrame {
         infoMGTPane = new javax.swing.JPanel();
         marketingfunnelLabel = new javax.swing.JLabel();
         infoMGTPanelLabel = new javax.swing.JLabel();
+        stockQuoteMenu = new javax.swing.JPanel();
+        stockQuoteLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 255));
 
         desktopBody.setBackground(new java.awt.Color(255, 255, 255));
-        desktopBody.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout infoMGTPane1Layout = new javax.swing.GroupLayout(infoMGTPane1);
         infoMGTPane1.setLayout(infoMGTPane1Layout);
@@ -77,8 +80,6 @@ public class Homepage extends javax.swing.JFrame {
             infoMGTPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        desktopBody.add(infoMGTPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 0));
 
         acctManagerMenu.setBackground(new java.awt.Color(250, 250, 250));
         acctManagerMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,8 +134,6 @@ public class Homepage extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        desktopBody.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 270, 120));
-
         jPanel3.setBackground(new java.awt.Color(250, 250, 250));
         jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,8 +160,6 @@ public class Homepage extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
-
-        desktopBody.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(250, 250, 250));
         jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,8 +188,6 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        desktopBody.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, -1, -1));
-
         jPanel5.setBackground(new java.awt.Color(250, 250, 250));
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -220,8 +215,6 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        desktopBody.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 120, -1, -1));
-
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gotoEnrollments(evt);
@@ -248,8 +241,6 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        desktopBody.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 270, -1));
-
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gotoInfoMgt(evt);
@@ -275,8 +266,6 @@ public class Homepage extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
-
-        desktopBody.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 270, -1));
 
         jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -308,11 +297,83 @@ public class Homepage extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        desktopBody.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, 260, -1));
-
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel8.setText("Good Day, Admin");
-        desktopBody.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        stockQuotePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gotoStockQuotes(evt);
+            }
+        });
+
+        stockQoutePanelLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        stockQoutePanelLabel.setText("Stock Quotes");
+
+        javax.swing.GroupLayout stockQuotePanelLayout = new javax.swing.GroupLayout(stockQuotePanel);
+        stockQuotePanel.setLayout(stockQuotePanelLayout);
+        stockQuotePanelLayout.setHorizontalGroup(
+            stockQuotePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stockQuotePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(stockQoutePanelLabel)
+                .addGap(89, 89, 89))
+        );
+        stockQuotePanelLayout.setVerticalGroup(
+            stockQuotePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(stockQuotePanelLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(stockQoutePanelLabel)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout desktopBodyLayout = new javax.swing.GroupLayout(desktopBody);
+        desktopBody.setLayout(desktopBodyLayout);
+        desktopBodyLayout.setHorizontalGroup(
+            desktopBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(infoMGTPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(desktopBodyLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(desktopBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addGroup(desktopBodyLayout.createSequentialGroup()
+                        .addGroup(desktopBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(desktopBodyLayout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(desktopBodyLayout.createSequentialGroup()
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addGroup(desktopBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(stockQuotePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+        );
+        desktopBodyLayout.setVerticalGroup(
+            desktopBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(desktopBodyLayout.createSequentialGroup()
+                .addComponent(infoMGTPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel8)
+                .addGap(48, 48, 48)
+                .addGroup(desktopBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(desktopBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stockQuotePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(352, Short.MAX_VALUE))
+        );
 
         HomepagePanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -462,7 +523,7 @@ public class Homepage extends javax.swing.JFrame {
             .addGroup(enrollmentPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(enrollmentPanelLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         marketingfunnelLabel.setText("Marketing Funnel");
@@ -479,14 +540,14 @@ public class Homepage extends javax.swing.JFrame {
             .addGroup(infoMGTPaneLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(marketingfunnelLabel)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         infoMGTPaneLayout.setVerticalGroup(
             infoMGTPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoMGTPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(marketingfunnelLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         infoMGTPanelLabel.setText("Information Management");
@@ -495,6 +556,31 @@ public class Homepage extends javax.swing.JFrame {
                 HandleShowInfoMgt(evt);
             }
         });
+
+        stockQuoteMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HandleStockQuote(evt);
+            }
+        });
+
+        stockQuoteLabel.setText("Stock Qoutes");
+
+        javax.swing.GroupLayout stockQuoteMenuLayout = new javax.swing.GroupLayout(stockQuoteMenu);
+        stockQuoteMenu.setLayout(stockQuoteMenuLayout);
+        stockQuoteMenuLayout.setHorizontalGroup(
+            stockQuoteMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(stockQuoteMenuLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(stockQuoteLabel)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        stockQuoteMenuLayout.setVerticalGroup(
+            stockQuoteMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(stockQuoteMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(stockQuoteLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -518,25 +604,32 @@ public class Homepage extends javax.swing.JFrame {
                 .addComponent(infoMGTPanelLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(infoMGTPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(stockQuoteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(enrollmentPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(campaignsPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(productPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(customersPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(accountManagerPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(HomepagePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(infoMGTPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(infoMGTPanelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(desktopBody, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enrollmentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campaignsPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(productPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(customersPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(accountManagerPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(HomepagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(infoMGTPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(infoMGTPanelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(desktopBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stockQuoteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -628,6 +721,18 @@ public class Homepage extends javax.swing.JFrame {
       funnel.show();
     }//GEN-LAST:event_gotoFunnel
 
+    private void HandleStockQuote(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HandleStockQuote
+        // TODO add your handling code here:
+        StockQuotes finances = new StockQuotes();
+        finances.show();
+    }//GEN-LAST:event_HandleStockQuote
+
+    private void gotoStockQuotes(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoStockQuotes
+        // TODO add your handling code here:
+        StockQuotes fin = new StockQuotes();
+        fin.setVisible(true);
+    }//GEN-LAST:event_gotoStockQuotes
+
     
     /**
      * @param args the command line arguments
@@ -698,5 +803,9 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel marketingfunnelLabel;
     private javax.swing.JPanel productPane;
     private javax.swing.JLabel productPanelLabel;
+    private javax.swing.JLabel stockQoutePanelLabel;
+    private javax.swing.JLabel stockQuoteLabel;
+    private javax.swing.JPanel stockQuoteMenu;
+    private javax.swing.JPanel stockQuotePanel;
     // End of variables declaration//GEN-END:variables
 }
